@@ -1,5 +1,6 @@
 transformers==4.53.2
-torch==2.2.0
+torch
 streamlit
 indictranstoolkit
 sentencepiece
+
