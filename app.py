@@ -116,7 +116,7 @@ if st.button("Translate"):
         ip = IndicProcessor(inference=True)
         translation = translate_cached(tokenizer, model, device, src_tag, tgt_tag, text_input)
         st.subheader("Translation")
-        translated = ip.postprocess_batch(translation, lang=tgt_lang)
+        translated = ip.postprocess_batch([translation], lang=tgt_lang)
         st.write(translated)
     except Exception as e:
         st.error("Inference failed. See details below.")
@@ -125,3 +125,4 @@ if st.button("Translate"):
 st.markdown("---")
 st.markdown("**Notes:**\n- Short paragraphs (<= ~800 chars) work best without chunking. "
             "\n- If model is gated, provide a HF token in `st.secrets['HF_TOKEN']` on Spaces or set `HUGGINGFACEHUB_API_TOKEN` locally.")
+
