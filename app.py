@@ -95,7 +95,7 @@ def translate_once(tokenizer, model, device, src_tag, tgt_tag, text, max_length=
     inputs = {k: v.to(device) for k, v in tokenized.items()}
     with torch.no_grad():
         out = model.generate(**inputs, max_length=max_length, num_beams=num_beams)
-    decoded = tokenizer.batch_decode(out, skip_special_tokens=True)[0]
+    decoded = tokenizer.batch_decode(out, skip_special_tokens=True)
     return decoded
 
 # ---- Translate button ----
@@ -116,8 +116,10 @@ if st.button("Translate"):
         ip = IndicProcessor(inference=True)
         translation = translate_cached(tokenizer, model, device, src_tag, tgt_tag, text_input)
         st.subheader("Translation")
-        translated = ip.postprocess_batch([translation], lang=tgt_lang)
-        st.write(translated)
+        print("translation ",translation)
+        translated = ip.postprocess_batch(translation, lang=tgt_lang)
+        print("translated ",translated)
+        st.write(translated[0])
     except Exception as e:
         st.error("Inference failed. See details below.")
         st.exception(e)
@@ -125,4 +127,5 @@ if st.button("Translate"):
 st.markdown("---")
 st.markdown("**Notes:**\n- Short paragraphs (<= ~800 chars) work best without chunking. "
             "\n- If model is gated, provide a HF token in `st.secrets['HF_TOKEN']` on Spaces or set `HUGGINGFACEHUB_API_TOKEN` locally.")
+
 
