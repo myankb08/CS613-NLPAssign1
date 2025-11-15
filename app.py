@@ -9,6 +9,7 @@ from IndicTransToolkit.processor import IndicProcessor
 MODEL_NAME = "ai4bharat/indictrans2-indic-indic-dist-320M"
 
 LANGUAGE_TAGS = {
+    "English":"eng_Latn",
     "Hindi": "hin_Deva",
     "Telugu": "tel_Telu",
     "Tamil": "tam_Taml",
@@ -191,3 +192,4 @@ st.markdown(
     "**Notes:**\n- Short paragraphs (<= ~800 chars) work best without chunking. "
     "\n- If model is gated, provide a HF token in `st.secrets['HF_TOKEN']` on Spaces or set `HUGGINGFACEHUB_API_TOKEN` locally."
 )
+
