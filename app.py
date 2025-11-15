@@ -113,6 +113,7 @@ if st.button("Translate"):
 
     try:
         # Use cache to speed up repeated identical inputs
+        print("hello app")
         ip = IndicProcessor(inference=True)
         translation = translate_cached(tokenizer, model, device, src_tag, tgt_tag, text_input)
         st.subheader("Translation")
@@ -127,5 +128,6 @@ if st.button("Translate"):
 st.markdown("---")
 st.markdown("**Notes:**\n- Short paragraphs (<= ~800 chars) work best without chunking. "
             "\n- If model is gated, provide a HF token in `st.secrets['HF_TOKEN']` on Spaces or set `HUGGINGFACEHUB_API_TOKEN` locally.")
+
 
 
