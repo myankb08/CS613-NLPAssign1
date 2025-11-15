@@ -113,14 +113,14 @@ if st.button("Translate"):
 
     try:
         # Use cache to speed up repeated identical inputs
-        print("hello app")
+        st.error("hello app")
         ip = IndicProcessor(inference=True)
         translation = translate_cached(tokenizer, model, device, src_tag, tgt_tag, text_input)
         st.subheader("Translation")
-        print("translation ",translation)
+        st.error(translation)
         translated = ip.postprocess_batch(translation, lang=tgt_lang)
-        print("translated ",translated)
-        st.write(translated[0])
+        st.error(translated)
+        st.write(translated)
     except Exception as e:
         st.error("Inference failed. See details below.")
         st.exception(e)
@@ -128,6 +128,7 @@ if st.button("Translate"):
 st.markdown("---")
 st.markdown("**Notes:**\n- Short paragraphs (<= ~800 chars) work best without chunking. "
             "\n- If model is gated, provide a HF token in `st.secrets['HF_TOKEN']` on Spaces or set `HUGGINGFACEHUB_API_TOKEN` locally.")
+
 
 
 
